@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.weekbach9to11;
+package com.mycompany.javapractice;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ASUS
  */
 public class StudentTable extends javax.swing.JFrame {
+    SingletonClass conn = SingletonClass.getInstance();
     
     ArrayList<StudentModel> studentList = new ArrayList<>();
     
@@ -26,25 +30,42 @@ public class StudentTable extends javax.swing.JFrame {
     }
 
     void getStudent(){
-        studentList.add(new StudentModel("Vishal","vishal@gmail.com","123456"));
-        studentList.add(new StudentModel("Yuvraj","yuvraj@gmail.com","123123"));
-        studentList.add(new StudentModel("Sunny","sunny@gmail.com","123466"));
-        studentList.add(new StudentModel("Abhinandan","abhinandan@gmail.com","123466"));
-        studentList.add(new StudentModel("Sayam","sayam@gmail.com","123666"));
+//        studentList.add(new StudentModel("Vishal","vishal@gmail.com","123456"));
+//        studentList.add(new StudentModel("Yuvraj","yuvraj@gmail.com","123123"));
+//        studentList.add(new StudentModel("Sunny","sunny@gmail.com","123466"));
+//        studentList.add(new StudentModel("Abhinandan","abhinandan@gmail.com","123466"));
+//        studentList.add(new StudentModel("Sayam","sayam@gmail.com","123666"));
+
+       String getData = "SELECT * FROM registeredtable";
         
-        String header[] = {"Name","Email","Password"};
+        String header[] = {"Id","Email","Password"};
+        
+        Statement state;
+        try {
+            state = conn.connection.createStatement();
+            ResultSet result  = state.executeQuery(getData);
         
         DefaultTableModel model = new DefaultTableModel(null,header);
         studentTable.setModel(model);
         model.setRowCount(0);
         
+        while(result.next()){
+            studentList.add(new StudentModel(result.getInt("id"),result.getString("email"), result.getString("password")));
+        
+        }
+        
+        
         Object[] row = new Object[3];
         for(StudentModel item: studentList){
-            row[0] = item.getName();
+            row[0] = item.getId();
             row[1] = item.getEmail();
             row[2] = item.getPass();
             model.addRow(row);
         }
+        } catch (SQLException ex) {
+            System.getLogger(StudentTable.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+        
     }
     
     /**
@@ -74,6 +95,11 @@ public class StudentTable extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        studentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(studentTable);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -103,6 +129,18 @@ public class StudentTable extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
+        // TODO add your handling code here:
+       int row = studentTable.getSelectedRow();
+       if(row >= 0){
+       Object value = studentTable.getValueAt(row,0);
+        int selectId = Integer.parseInt(value.toString());
+        System.out.println("Selected Id:"+selectId);
+        FormScreen screen = new FormScreen(selectId);
+        screen.setVisible(true);
+       }
+    }//GEN-LAST:event_studentTableMouseClicked
 
     /**
      * @param args the command line arguments

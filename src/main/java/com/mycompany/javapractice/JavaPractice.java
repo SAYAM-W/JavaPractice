@@ -15,7 +15,7 @@ public class JavaPractice {
         
         SingletonClass single = SingletonClass.getInstance();
         
-        FormScreen screen = new FormScreen();
+        FormScreen screen = new FormScreen(0);
         screen.setVisible(true);
 //        
 
