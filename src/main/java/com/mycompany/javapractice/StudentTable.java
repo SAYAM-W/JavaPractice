@@ -36,7 +36,7 @@ public class StudentTable extends javax.swing.JFrame {
 //        studentList.add(new StudentModel("Abhinandan","abhinandan@gmail.com","123466"));
 //        studentList.add(new StudentModel("Sayam","sayam@gmail.com","123666"));
 
-       String getData = "SELECT * FROM registeredtable";
+       String getData = "SELECT * FROM registerTable";
         
         String header[] = {"Id","Email","Password"};
         

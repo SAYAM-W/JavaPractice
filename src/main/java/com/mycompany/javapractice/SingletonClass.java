@@ -24,7 +24,7 @@ public class SingletonClass {
             
              if(connection!=null){
                  System.out.println("Database Connected!");
-        String registerTable="CREATE TABLE IF NOT EXISTS registertable(id INT AUTO_INCREMENT, email VARCHAR(50), password VARCHAR(50), PRIMARY KEY(id))";
+        String registerTable="CREATE TABLE IF NOT EXISTS registerTable(id INT AUTO_INCREMENT, email VARCHAR(50), password VARCHAR(50), PRIMARY KEY(id))";
                 PreparedStatement ps = connection.prepareCall(registerTable);
                 ps.execute();
         
