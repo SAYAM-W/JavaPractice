@@ -4,11 +4,16 @@
  */
 package com.mycompany.javapractice;
 
+import com.mycompany.javapractice.SingletonClass;
+import com.mycompany.javapractice.StudentModel;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -30,11 +35,7 @@ public class StudentTable extends javax.swing.JFrame {
     }
 
     void getStudent(){
-//        studentList.add(new StudentModel("Vishal","vishal@gmail.com","123456"));
-//        studentList.add(new StudentModel("Yuvraj","yuvraj@gmail.com","123123"));
-//        studentList.add(new StudentModel("Sunny","sunny@gmail.com","123466"));
-//        studentList.add(new StudentModel("Abhinandan","abhinandan@gmail.com","123466"));
-//        studentList.add(new StudentModel("Sayam","sayam@gmail.com","123666"));
+
 
        String getData = "SELECT * FROM registerTable";
         
@@ -46,7 +47,7 @@ public class StudentTable extends javax.swing.JFrame {
             ResultSet result  = state.executeQuery(getData);
         
         DefaultTableModel model = new DefaultTableModel(null,header);
-        studentTable.setModel(model);
+        StudentData.setModel(model);
         model.setRowCount(0);
         
         while(result.next()){
@@ -68,6 +69,7 @@ public class StudentTable extends javax.swing.JFrame {
         
     }
     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,14 +79,13 @@ public class StudentTable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        studentTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        StudentData = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        studentTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+        StudentData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -95,81 +96,89 @@ public class StudentTable extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        studentTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        StudentData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                studentTableMouseClicked(evt);
+                StudentDataMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(studentTable);
+        jScrollPane1.setViewportView(StudentData);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Student Data");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void studentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentTableMouseClicked
+    private void StudentDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StudentDataMouseClicked
         // TODO add your handling code here:
-       int row = studentTable.getSelectedRow();
-       if(row >= 0){
-       Object value = studentTable.getValueAt(row,0);
-        int selectId = Integer.parseInt(value.toString());
-        System.out.println("Selected Id:"+selectId);
-        FormScreen screen = new FormScreen(selectId);
-        screen.setVisible(true);
-       }
-    }//GEN-LAST:event_studentTableMouseClicked
+      
+
+       int row = StudentData.getSelectedRow();
+        Object value = StudentData.getValueAt(row, 0);
+        int selectedId = Integer.parseInt(value.toString());
+        
+        System.out.println("Clicked");
+       int choice =  JOptionPane.showConfirmDialog(this, "Update or Delete","Confirm Action", JOptionPane.YES_NO_OPTION);
+        if(choice == JOptionPane.YES_OPTION){
+            
+         // Update
+        }else{
+           String deleteuser = "DELETE FROM registerTable WHERE ID=?";
+           
+           try{
+               PreparedStatement ps = conn.connection.prepareCall(deleteuser);
+               ps.setInt(1, selectedId);
+               if(ps.executeUpdate() > 0){
+                  
+                JOptionPane.showMessageDialog(this, "Message Deleted");
+                 getData();
+               }
+            
+               
+               
+           }catch(SQLException exception){
+            System.out.println("Delete Exception: "+exception);
+        }
+        }  
+    }//GEN-LAST:event_StudentDataMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+       public static void main(String args[]) {
+        
         java.awt.EventQueue.invokeLater(() -> new StudentTable().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable StudentData;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable studentTable;
     // End of variables declaration//GEN-END:variables
+
+    private void getData() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+
 }
