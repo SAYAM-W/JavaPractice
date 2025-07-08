@@ -38,39 +38,48 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+              <Component id="Values" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="inverter" max="32767" attributes="0"/>
+                              <Component id="SignSwap" max="32767" attributes="0"/>
                               <Component id="four" alignment="0" max="32767" attributes="0"/>
                               <Component id="seven" alignment="0" max="32767" attributes="0"/>
                               <Component id="plus" pref="80" max="32767" attributes="0"/>
                           </Group>
                           <Component id="dot" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="plus1" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="one" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="five" alignment="0" max="32767" attributes="0"/>
                       <Component id="eight" alignment="0" max="32767" attributes="0"/>
-                      <Component id="remainder" alignment="0" max="32767" attributes="0"/>
+                      <Component id="multiply" alignment="0" max="32767" attributes="0"/>
                       <Component id="two" alignment="0" pref="80" max="32767" attributes="0"/>
                       <Component id="minus" alignment="0" max="32767" attributes="0"/>
                       <Component id="zero" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="three" alignment="0" max="32767" attributes="0"/>
-                      <Component id="six" alignment="0" max="32767" attributes="0"/>
-                      <Component id="nine" alignment="0" max="32767" attributes="0"/>
-                      <Component id="divide" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="equalto" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="three" alignment="0" max="32767" attributes="0"/>
+                              <Component id="six" alignment="0" max="32767" attributes="0"/>
+                              <Component id="nine" alignment="0" max="32767" attributes="0"/>
+                              <Component id="divide" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="equalto" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="67" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="X" min="-2" pref="80" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -78,11 +87,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="Values" min="-2" pref="71" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="inverter" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="remainder" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="SignSwap" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="multiply" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="divide" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -96,7 +105,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="two" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="plus1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="one" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -124,6 +133,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="zero" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="dot" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="X" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
               </Group>
@@ -131,10 +141,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jTextField1">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="Values">
         </Component>
         <Component class="javax.swing.JButton" name="four">
           <Properties>
@@ -150,25 +157,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="zeroActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="five">
           <Properties>
             <Property name="text" type="java.lang.String" value="5"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fiveActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="eight">
           <Properties>
             <Property name="text" type="java.lang.String" value="8"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eightActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="three">
           <Properties>
@@ -185,14 +183,14 @@
             <Property name="text" type="java.lang.String" value="9"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="inverter">
+        <Component class="javax.swing.JButton" name="SignSwap">
           <Properties>
             <Property name="text" type="java.lang.String" value="+/-"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="remainder">
+        <Component class="javax.swing.JButton" name="multiply">
           <Properties>
-            <Property name="text" type="java.lang.String" value="%"/>
+            <Property name="text" type="java.lang.String" value="*"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="two">
@@ -219,22 +217,24 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="="/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="equaltoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="dot">
           <Properties>
             <Property name="text" type="java.lang.String" value="."/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dotActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="plus1">
+        <Component class="javax.swing.JButton" name="one">
           <Properties>
             <Property name="text" type="java.lang.String" value="1"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plus1ActionPerformed"/>
-          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="X">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="X"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
